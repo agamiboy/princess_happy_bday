@@ -5,3 +5,48 @@
 @media(min-width:1500px){.intro{padding-top:85px}.letter-scene{margin-top:45px}.cat-meadow{margin-top:20px}}
 @media(max-width:700px){.site-header{padding:23px 23px;gap:12px}.wordmark{font-size:25px}.header-note{display:none}.motion-button{margin-left:auto;font-size:10px}.intro{padding:42px 20px 23px}.eyebrow{font-size:8px;letter-spacing:2px}h1{margin-top:22px}.intro-copy{font-size:13px}.letter-scene{padding:32px 32px 0;margin-top:17px}.envelope{height:235px}.envelope-to{font-size:12px}.seal{top:108px}.pill-left{left:4px;top:-9px;width:47px}.pill-right{right:6px;top:258px;width:44px}.herb-left{left:6px;top:245px;width:36px;height:53px}.herb-right{right:12px;top:-24px;width:40px;height:59px}.side-note,.tiny-heart,.sparkle-two{display:none}.sparkle-one{left:70px;top:-12px;font-size:20px}.letter-paper{padding:24px}.letter-paper h2{font-size:18px}.letter-body{font-size:15px}.cat-meadow{height:138px;margin-top:12px}.bottom-note{font-size:11px}.bottom-note span{display:block;margin:7px 0 0}footer{padding-top:30px}}
 @media(prefers-reduced-motion:reduce){.letter-paper{animation:none}.envelope{transition:none}}
+
+/* Surprise capsules stay clickable above the decorative illustrations. */
+.gift-capsule{z-index:3;min-width:56px;min-height:48px;padding:0;border:0;background:transparent;overflow:visible;touch-action:manipulation}
+.gift-capsule svg{display:block;width:100%;height:100%;overflow:visible;transition:filter .2s}
+.gift-capsule:hover,.gift-capsule:focus-visible{animation-play-state:paused}
+.gift-capsule:hover svg{filter:drop-shadow(0 0 8px #c6a27888)}
+.capsule-hint{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:10px;white-space:nowrap;color:#8b806b}
+.capsule-pop{display:none;position:absolute;inset:-10px;align-items:center;justify-content:center;background:#eee0b8;color:#a9755c;font-size:23px;font-weight:bold;clip-path:polygon(50% 0,60% 21%,82% 6%,80% 32%,100% 39%,83% 55%,98% 78%,71% 77%,62% 100%,47% 80%,25% 97%,26% 71%,0 64%,20% 46%,3% 23%,32% 26%)}
+.gift-capsule.is-popping{animation-play-state:paused}
+.is-popping svg{animation:capsule-burst .45s ease-out both}
+.is-popping .capsule-hint{visibility:hidden}
+.is-popping .capsule-pop{display:flex;animation:pop-word .45s ease-out both}
+body.gift-open{overflow:hidden}
+.gift-dialog{width:min(400px,calc(100% - 40px));max-height:calc(100dvh - 40px);padding:0;border:1px solid #e1dbc7;border-radius:18px;background:#fffdf5;color:var(--ink);box-shadow:0 25px 90px #333b3b33;overflow:auto;text-align:center}
+.gift-dialog::backdrop{background:#42493566;backdrop-filter:blur(5px)}
+.gift-dialog[open]{animation:gift-appear .45s cubic-bezier(.2,.8,.25,1.15) both}
+.gift-card{position:relative;overflow:hidden;padding:42px 28px 30px}
+.gift-close{position:absolute;right:10px;top:10px;border:0;background:transparent;width:40px;height:40px;border-radius:50%;font-size:26px;color:#92917b;z-index:2}
+.gift-close:hover{background:#f0efdf}
+.gift-eyebrow{font:9px Georgia,serif;letter-spacing:2px;color:#909477;margin:6px 0 8px}
+.gift-art{height:165px;margin:0 auto 8px;width:240px;max-width:100%}
+.gift-art svg{width:100%;height:100%}
+.gift-card h2{font:700 34px 'Gowun Batang',serif;margin:8px 0 15px;color:#69754f}
+.gift-description{font-size:14px;line-height:1.9;white-space:pre-line;margin:0;color:#7f816b;overflow-wrap:anywhere}
+.gift-footnote{font-size:11px;color:#b4977d;margin:22px 0}
+.gift-confirm{border:1px solid #d4d9bc;border-radius:30px;background:#e9ecd9;padding:13px 26px;font-size:13px}
+.gift-confirm:hover{background:#dfe5c8}
+.gift-confetti{position:absolute;inset:0;pointer-events:none}
+.gift-confetti i{position:absolute;left:50%;top:42%;width:8px;height:12px;background:#d5b58d;border-radius:2px;animation:confetti .9s ease-out both;--x:-120px;--y:-130px;--r:140deg}
+.gift-confetti i:nth-child(2){--x:120px;--y:-140px;--r:-180deg;background:#a7b389}
+.gift-confetti i:nth-child(3){--x:-145px;--y:-20px;--r:220deg;background:#d5a796}
+.gift-confetti i:nth-child(4){--x:145px;--y:-30px;--r:-240deg;background:#d5a796}
+.gift-confetti i:nth-child(5){--x:-95px;--y:115px;--r:100deg;background:#a7b389}
+.gift-confetti i:nth-child(6){--x:110px;--y:125px;--r:-120deg}
+.gift-confetti i:nth-child(7){--x:-30px;--y:-155px;--r:240deg;border-radius:50%}
+.gift-confetti i:nth-child(8){--x:45px;--y:-170px;--r:-240deg;background:#a7b389;border-radius:50%}
+.motion-paused .gift-dialog[open]{animation:none}
+.motion-paused .gift-confetti{display:none}
+@keyframes capsule-burst{0%{transform:scale(1)}30%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1.6);opacity:0}}
+@keyframes pop-word{0%{transform:scale(.3);opacity:0}35%,75%{transform:scale(1.35);opacity:1}100%{transform:scale(1.6);opacity:0}}
+@keyframes gift-appear{from{opacity:0;transform:translateY(15px) scale(.85)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes confetti{0%{opacity:0;transform:translate(0,0) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r))}}
+@media(max-width:700px){.gift-capsule.pill-left{left:16px;top:-17px}.gift-capsule.pill-right{right:16px;top:255px}.capsule-hint{font-size:9px}}
+@media(max-width:420px){.site-header{padding-left:18px;padding-right:18px;gap:8px}.wordmark{font-size:21px}.motion-button{padding:9px 10px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){.gift-dialog[open],.is-popping svg,.is-popping .capsule-pop{animation:none}.gift-confetti{display:none}}
