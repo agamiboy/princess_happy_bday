@@ -52,7 +52,6 @@ giftButtons.forEach((button) => {
     document.getElementById('gift-title').textContent = gift.title;
     document.getElementById('gift-description').textContent = gift.description;
     document.getElementById('wish-art').hidden = button.dataset.gift !== 'wish';
-    document.getElementById('necklace-art').hidden = button.dataset.gift !== 'necklace';
     button.classList.add('is-popping');
     const gentle = motionPreference.matches || document.body.classList.contains('motion-paused');
     window.setTimeout(() => {
