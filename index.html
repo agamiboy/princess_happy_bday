@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf7ef" />
+    <meta name="description" content="고양이가 배달하는, 너만을 위한 작은 편지." />
+    <title>너에게 보내는 작은 편지</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="letter.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="cat" viewBox="0 0 180 140">
+          <path d="M133 92c45 6 44-42 24-41" fill="none" stroke="#77785a" stroke-width="13" stroke-linecap="round"/>
+          <ellipse cx="103" cy="98" rx="42" ry="26" fill="#929377"/>
+          <path class="cat-leg leg-one" d="M81 110l-10 19M118 110l14 19" stroke="#77785a" stroke-width="12" stroke-linecap="round"/>
+          <path class="cat-leg leg-two" d="M90 111l10 18M128 108l-7 20" stroke="#929377" stroke-width="12" stroke-linecap="round"/>
+          <path d="M31 64l2-38 28 20 23-16 10 38c8 39-68 43-63-4" fill="#929377"/>
+          <path d="M39 39l1 20 13-9M80 42l-12 10 17 6" fill="#eac3ac"/>
+          <path d="M45 69l5 2m24-2-5 2" stroke="#414c3a" stroke-width="4" stroke-linecap="round"/>
+          <path d="M57 77h7l-3 4z" fill="#765f52"/>
+          <path d="M61 81q-4 6-9 1m9-1q3 6 8 1M38 78l-15-3m15 9-15 2m61-8 15-4m-14 10 15 1" fill="none" stroke="#566047" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="43" cy="78" rx="6" ry="3" fill="#d6ac99"/><ellipse cx="79" cy="78" rx="6" ry="3" fill="#d6ac99"/>
+          <path d="M44 99q22 10 40-2" fill="none" stroke="#d29473" stroke-width="6"/><circle cx="65" cy="105" r="5" fill="#e6c679"/>
+        </symbol>
+        <symbol id="pill" viewBox="0 0 80 40">
+          <rect x="3" y="3" width="74" height="34" rx="17" fill="#f7f2df" stroke="#bdb79b" stroke-width="2"/>
+          <path d="M40 4H20a16 16 0 0 0 0 32h20z" fill="#c3c6a0"/>
+          <path d="M40 4v32" stroke="#b0ae91" stroke-width="2"/><path d="M16 12h13" stroke="#fff" stroke-width="3" opacity=".6" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="herb" viewBox="0 0 68 90">
+          <path d="M12 6h44l-3 15 5 59q-24 7-48 0l5-59z" fill="#dfc6a0" stroke="#b49a76" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M12 12h43M13 76h43" stroke="#b49a76" stroke-width="2" stroke-dasharray="3 3"/>
+          <rect x="19" y="30" width="30" height="33" rx="3" fill="#f9f1da"/>
+          <path d="M34 54V39m0 9q-12-1-10-9 11 0 10 9m0-4q1-10 10-9 1 9-10 9" stroke="#939775" stroke-width="2" fill="#c7cbaa"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header"><a class="wordmark" href="./" aria-label="처음으로">dear, you<span class="wordmark-dot">✳</span></a><span class="header-note">a little letter, a lot of love</span><button class="motion-button" id="motion-toggle" type="button" aria-pressed="false">움직임 멈추기</button></header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span></span> SPECIAL DELIVERY FOR YOU <span></span></div>
+        <h1 id="page-title">오늘도, <span>네 생각.</span></h1>
+        <p class="intro-copy">하고 싶은 말을 꾹꾹 눌러 담았어.<br />고양이가 살짝 두고 간 편지, 열어볼래?</p>
+      </section>
+
+      <section class="letter-scene" aria-label="너에게 보내는 편지">
+        <div class="decorations" aria-hidden="true">
+          <svg class="floating pill pill-left"><use href="#pill" /></svg>
+          <svg class="floating pill pill-right"><use href="#pill" /></svg>
+          <svg class="floating herb herb-left"><use href="#herb" /></svg>
+          <svg class="floating herb herb-right"><use href="#herb" /></svg>
+          <span class="sparkle sparkle-one">✧</span><span class="sparkle sparkle-two">✳</span><span class="tiny-heart">♡</span>
+          <span class="side-note">마음까지 따뜻하게</span>
+        </div>
+
+        <div class="envelope-wrap" id="envelope-wrap">
+          <div class="envelope-tab">a small dose of love</div>
+          <button class="envelope" id="open-letter" type="button" aria-expanded="false" aria-controls="letter">
+            <span class="envelope-back"></span><span class="envelope-fold"></span>
+            <span class="envelope-to">To. 내가 제일 좋아하는 너에게</span>
+            <span class="seal">♡</span><span class="envelope-label">편지 열어보기 <span aria-hidden="true">↗</span></span>
+          </button>
+          <p class="under-envelope">오직 너를 위한 한 통 <span aria-hidden="true">♡</span></p>
+        </div>
+
+        <article class="letter-paper" id="letter" hidden aria-labelledby="letter-to" tabindex="-1">
+          <div class="paper-top"><span>WITH ALL MY LOVE</span><span class="paper-flower" aria-hidden="true">✳</span></div>
+          <h2 id="letter-to"></h2>
+          <div id="letter-body" class="letter-body"></div>
+          <div class="signature"><span id="letter-date"></span><p id="letter-from"></p></div>
+          <div class="paper-bottom"><span aria-hidden="true">♡</span><button id="close-letter" type="button">편지 접어두기 ↙</button></div>
+        </article>
+      </section>
+
+      <div class="cat-meadow" aria-hidden="true">
+        <span class="ground-flower flower-one">✳</span><span class="ground-flower flower-two">✳</span><span class="ground-flower flower-three">✧</span>
+        <div class="cat-runner"><svg class="running-cat"><use href="#cat" /></svg><span class="cat-message">편지 왔다냥!</span></div>
+        <div class="ground-line"></div>
+      </div>
+      <p class="bottom-note">하루 한 번, 사랑 듬뿍. <span>마음에 좋은 편지입니다.</span></p>
+    </main>
+    <footer>made with love <span aria-hidden="true">♡</span> delivered by a cat</footer>
+  </body>
+</html>
