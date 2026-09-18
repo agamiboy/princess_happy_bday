@@ -37,8 +37,8 @@ motionButton.addEventListener('click', () => setMotion(!document.body.classList.
 const giftDialog = document.getElementById('gift-dialog');
 const giftButtons = [...document.querySelectorAll('[data-gift]')];
 const gifts = {
-  wish: { title: '소원권', description: '공주님의 소원 하나를 들어드립니다.\n쓰고 싶은 날, 나한테 살짝 말해줘 ♡' },
-  necklace: { title: '목걸이', description: '반짝반짝, 너를 위한 목걸이.\n내 마음도 함께 걸어줄게 ♡' },
+  wish: { title: '소원권', description: '공주님의 소원 하나를 들어드립니다.\n몇개 있는지 모르지만 일단은!' },
+  necklace: { title: '눈 감아봐', description: '눈 감아봐 공주!!!.\n그리고 가만히 있어야해~?' },
 };
 let giftOpener = null;
 let giftPending = false;
