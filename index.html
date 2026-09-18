@@ -51,13 +51,22 @@
 
       <section class="letter-scene" aria-label="공주에게 보내는 편지">
         <div class="decorations" aria-hidden="true">
-          <svg class="floating pill pill-left"><use href="#pill" /></svg>
-          <svg class="floating pill pill-right"><use href="#pill" /></svg>
           <svg class="floating herb herb-left"><use href="#herb" /></svg>
           <svg class="floating herb herb-right"><use href="#herb" /></svg>
           <span class="sparkle sparkle-one">✧</span><span class="sparkle sparkle-two">✳</span><span class="tiny-heart">♡</span>
           <span class="side-note">마음까지 따뜻한 공주네 약국</span>
         </div>
+
+        <button class="floating pill pill-left gift-capsule" type="button" data-gift="wish" aria-label="첫 번째 깜짝 선물 캡슐 열기" aria-haspopup="dialog" aria-controls="gift-dialog">
+          <svg viewBox="0 0 80 40" aria-hidden="true"><use href="#pill" /></svg>
+          <span class="capsule-hint" aria-hidden="true">눌러봐 ♡</span>
+          <span class="capsule-pop" aria-hidden="true">펑!</span>
+        </button>
+        <button class="floating pill pill-right gift-capsule" type="button" data-gift="necklace" aria-label="두 번째 깜짝 선물 캡슐 열기" aria-haspopup="dialog" aria-controls="gift-dialog">
+          <svg viewBox="0 0 80 40" aria-hidden="true"><use href="#pill" /></svg>
+          <span class="capsule-hint" aria-hidden="true">나도 눌러봐</span>
+          <span class="capsule-pop" aria-hidden="true">펑!</span>
+        </button>
 
         <div class="envelope-wrap" id="envelope-wrap">
           <div class="envelope-tab">a small dose of love</div>
@@ -85,6 +94,34 @@
       </div>
       <p class="bottom-note">하루 한 번, 사랑 듬뿍. <span>마음에 좋은 편지입니다.</span></p>
     </main>
+    <dialog class="gift-dialog" id="gift-dialog" aria-labelledby="gift-title" aria-describedby="gift-description">
+      <div class="gift-card">
+        <button class="gift-close" id="close-gift" type="button" aria-label="선물 닫기" autofocus>×</button>
+        <div class="gift-confetti" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="gift-eyebrow">A LITTLE SURPRISE FOR YOU</p>
+        <div class="gift-art" id="wish-art" aria-hidden="true">
+          <svg viewBox="0 0 240 150">
+            <path d="M27 26h186v38a13 13 0 0 0 0 26v34H27V90a13 13 0 0 0 0-26z" fill="#e8ebd2" stroke="#9aa37a" stroke-width="2"/>
+            <path d="M48 39h144v72H48z" fill="none" stroke="#b4bd95" stroke-dasharray="4 5"/>
+            <path d="M120 91s-30-17-30-33c0-16 22-19 30-5 8-14 30-11 30 5 0 16-30 33-30 33" fill="#cf987f"/>
+            <path d="m65 63 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1zM175 63l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#b4bd95"/>
+          </svg>
+        </div>
+        <div class="gift-art" id="necklace-art" hidden aria-hidden="true">
+          <svg viewBox="0 0 240 180">
+            <path d="M64 23c0 55 17 91 56 110 39-19 56-55 56-110" fill="none" stroke="#c7a468" stroke-width="4" stroke-linecap="round"/>
+            <path d="M70 24c0 49 14 81 50 101 36-20 50-52 50-101" fill="none" stroke="#ebd8ae" stroke-width="2"/>
+            <circle cx="120" cy="133" r="5" fill="none" stroke="#c7a468" stroke-width="3"/>
+            <path d="M120 164s-23-13-23-25c0-11 16-14 23-4 7-10 23-7 23 4 0 12-23 25-23 25" fill="#e7b4a1" stroke="#c7a468" stroke-width="3"/>
+            <path d="m190 66 3 10 10 3-10 3-3 10-3-10-10-3 10-3zM48 110l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#cfb77f"/>
+          </svg>
+        </div>
+        <h2 id="gift-title"></h2>
+        <p class="gift-description" id="gift-description"></p>
+        <p class="gift-footnote">공주님께 드리는 작은 선물 ♡</p>
+        <button class="gift-confirm" id="confirm-gift" type="button">기분 좋게 받기 ♡</button>
+      </div>
+    </dialog>
     <footer>made with love <span aria-hidden="true">♡</span> delivered by a cat</footer>
   </body>
 </html>
