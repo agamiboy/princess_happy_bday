@@ -30,6 +30,58 @@ function setMotion(paused) {
   motionButton.setAttribute('aria-pressed', String(paused));
   motionButton.textContent = paused ? '움직임 켜기' : '움직임 멈추기';
 }
-setMotion(motionPreference.matches);
-motionPreference.addEventListener('change', (event) => setMotion(event.matches));
+// Always start the cat and floating decorations in motion.
+setMotion(false);
 motionButton.addEventListener('click', () => setMotion(!document.body.classList.contains('motion-paused')));
+
+const giftDialog = document.getElementById('gift-dialog');
+const giftButtons = [...document.querySelectorAll('[data-gift]')];
+const gifts = {
+  wish: { title: '소원권', description: '공주님의 소원 하나를 들어드립니다.\n쓰고 싶은 날, 나한테 살짝 말해줘 ♡' },
+  necklace: { title: '목걸이', description: '반짝반짝, 너를 위한 목걸이.\n내 마음도 함께 걸어줄게 ♡' },
+};
+let giftOpener = null;
+let giftPending = false;
+
+giftButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (giftPending || giftDialog.open) return;
+    giftPending = true;
+    giftOpener = button;
+    const gift = gifts[button.dataset.gift];
+    document.getElementById('gift-title').textContent = gift.title;
+    document.getElementById('gift-description').textContent = gift.description;
+    document.getElementById('wish-art').hidden = button.dataset.gift !== 'wish';
+    document.getElementById('necklace-art').hidden = button.dataset.gift !== 'necklace';
+    button.classList.add('is-popping');
+    const gentle = motionPreference.matches || document.body.classList.contains('motion-paused');
+    window.setTimeout(() => {
+      button.classList.remove('is-popping');
+      giftPending = false;
+      giftDialog.showModal();
+      document.body.classList.add('gift-open');
+    }, gentle ? 0 : 450);
+  });
+});
+function restoreAfterGift() {
+  if (giftDialog.open) return;
+  document.body.classList.remove('gift-open');
+  giftOpener?.focus({ preventScroll: true });
+}
+function closeGift() {
+  giftDialog.close();
+  restoreAfterGift();
+}
+document.getElementById('close-gift').addEventListener('click', closeGift);
+document.getElementById('confirm-gift').addEventListener('click', closeGift);
+giftDialog.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeGift();
+});
+giftDialog.addEventListener('click', (event) => {
+  const bounds = giftDialog.getBoundingClientRect();
+  if (event.target === giftDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+    closeGift();
+  }
+});
+giftDialog.addEventListener('close', restoreAfterGift);
